@@ -17,7 +17,7 @@
 
 
     <!-- 启动扫描 -->
-    <context:component-scan base-package="com.amos.mybatis">
+    <context:component-scan base-package="com.amos.spring">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
     </context:component-scan>
 
@@ -76,7 +76,7 @@
         <property name="preferredTestQuery" value="select 1"/>
     </bean>
 
-    <bean name="dynamicDatasource" class="com.amos.mybatis.datasource.CustomerDatasource">
+    <bean name="dynamicDatasource" class="com.amos.spring.datasource.CustomerDatasource">
         <property name="targetDataSources">
             <map>
                 <entry key="ds_1" value-ref="dataSource_a"/>
@@ -102,7 +102,7 @@
     </bean>
 
     <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.amos.mybatis.dschange.mapper" />
+        <property name="basePackage" value="com.amos.spring.dschange.mapper" />
         <property name="sqlSessionTemplateBeanName" value="sqlSessionTemplate"/>
     </bean>
 

@@ -1,7 +1,7 @@
-package com.amos.mybatis.dschange;
+package com.amos.spring.dschange;
 
-import com.amos.mybatis.annotation.ChooseDataSource;
-import com.amos.mybatis.dschange.bean.Shop;
+import com.amos.spring.annotation.ChooseDataSource;
+import com.amos.spring.dschange.bean.Shop;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

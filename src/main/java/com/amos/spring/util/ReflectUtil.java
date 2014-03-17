@@ -4,7 +4,7 @@
  * 版本号： v1.0
 */
 
-package com.amos.mybatis.util;
+package com.amos.spring.util;
 
 import org.springframework.util.Assert;
 

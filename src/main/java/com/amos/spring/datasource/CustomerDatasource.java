@@ -1,6 +1,6 @@
-package com.amos.mybatis.datasource;
+package com.amos.spring.datasource;
 
-import com.amos.mybatis.util.DataSourceContextHolder;
+import com.amos.spring.util.DataSourceKeyHolder;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
 /**
@@ -11,6 +11,6 @@ import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 public class CustomerDatasource extends AbstractRoutingDataSource {
     @Override
     protected Object determineCurrentLookupKey() {
-        return DataSourceContextHolder.getDataSourceKey();
+        return DataSourceKeyHolder.getDataSourceKey();
     }
 }

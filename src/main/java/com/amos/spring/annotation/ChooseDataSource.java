@@ -1,4 +1,4 @@
-package com.amos.mybatis.annotation;
+package com.amos.spring.annotation;
 
 import java.lang.annotation.*;
 

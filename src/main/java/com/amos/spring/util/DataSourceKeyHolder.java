@@ -1,4 +1,4 @@
-package com.amos.mybatis.util;
+package com.amos.spring.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,9 +11,9 @@ import org.slf4j.LoggerFactory;
  * Time: 下午4:35
  * 将数据源的键存入ThreadLocal中
  */
-public class DataSourceContextHolder {
+public class DataSourceKeyHolder {
     private static final ThreadLocal<String> contextHolder = new ThreadLocal<String>();
-    private static Logger logger = LoggerFactory.getLogger(DataSourceContextHolder.class);
+    private static Logger logger = LoggerFactory.getLogger(DataSourceKeyHolder.class);
 
     public static void setDataSourceKey(String dataSourceKey) {
         contextHolder.set(dataSourceKey);

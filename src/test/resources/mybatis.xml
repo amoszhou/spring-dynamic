@@ -6,6 +6,6 @@
     </settings>
     <typeAliases>
         <!-- 别名：店铺实体 -->
-        <typeAlias type="com.amos.mybatis.dschange.bean.Shop" alias="Shop"></typeAlias>
+        <typeAlias type="com.amos.spring.dschange.bean.Shop" alias="Shop"></typeAlias>
     </typeAliases>
 </configuration>

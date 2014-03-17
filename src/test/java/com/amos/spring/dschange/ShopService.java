@@ -1,7 +1,7 @@
-package com.amos.mybatis.dschange;
+package com.amos.spring.dschange;
 
-import com.amos.mybatis.dschange.bean.Shop;
-import com.amos.mybatis.dschange.mapper.ShopMapper;
+import com.amos.spring.dschange.bean.Shop;
+import com.amos.spring.dschange.mapper.ShopMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

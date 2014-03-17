@@ -1,8 +1,8 @@
-package com.amos.mybatis.aop;
+package com.amos.spring.aop;
 
-import com.amos.mybatis.annotation.ChooseDataSource;
-import com.amos.mybatis.util.DataSourceContextHolder;
-import com.amos.mybatis.util.ReflectUtil;
+import com.amos.spring.annotation.ChooseDataSource;
+import com.amos.spring.util.DataSourceKeyHolder;
+import com.amos.spring.util.ReflectUtil;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
@@ -25,7 +25,7 @@ public abstract   class ChooseDataSourceAspect {
     protected static final ThreadLocal<String> preDatasourceHolder = new ThreadLocal<String>();
 
 
-    @Pointcut("@annotation(com.amos.mybatis.annotation.ChooseDataSource)")
+    @Pointcut("@annotation(com.amos.spring.annotation.ChooseDataSource)")
     public void methodWithChooseAnnotation() {
 
     }
@@ -48,12 +48,12 @@ public abstract   class ChooseDataSourceAspect {
         String resultDS = determineDatasource(jp);
         //没有配置实用默认数据源
         if (resultDS == null) {
-            DataSourceContextHolder.setDataSourceKey(null);
+            DataSourceKeyHolder.setDataSourceKey(null);
             return;
         }
-        preDatasourceHolder.set(DataSourceContextHolder.getDataSourceKey());
+        preDatasourceHolder.set(DataSourceKeyHolder.getDataSourceKey());
         //将数据源设置到数据源持有者
-        DataSourceContextHolder.setDataSourceKey(resultDS);
+        DataSourceKeyHolder.setDataSourceKey(resultDS);
 
     }
 
@@ -86,7 +86,7 @@ public abstract   class ChooseDataSourceAspect {
      */
     @After("methodWithChooseAnnotation()")
     public void restoreDataSourceAfterMethodExecution() {
-        DataSourceContextHolder.setDataSourceKey(preDatasourceHolder.get());
+        DataSourceKeyHolder.setDataSourceKey(preDatasourceHolder.get());
         preDatasourceHolder.remove();
     }
 
