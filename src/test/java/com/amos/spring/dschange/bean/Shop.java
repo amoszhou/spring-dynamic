@@ -1,4 +1,4 @@
-package com.ejushang.spring.dschange.bean;
+package com.amos.spring.dschange.bean;
 
 import java.util.Date;
 

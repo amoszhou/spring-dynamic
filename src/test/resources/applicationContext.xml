@@ -92,7 +92,7 @@
         <property name="configLocation" value="classpath:mybatis.xml" />
         <property name="mapperLocations">
             <list>
-                <value>classpath:com/amos/mybatis/dschange/mapper/shop-mapper.xml</value>
+                <value>classpath:com/amos/spring/dschange/mapper/shop-mapper.xml</value>
             </list>
          </property>
     </bean>

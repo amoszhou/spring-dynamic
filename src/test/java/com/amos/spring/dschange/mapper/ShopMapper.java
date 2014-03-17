@@ -1,6 +1,6 @@
-package com.ejushang.spring.dschange.mapper;
+package com.amos.spring.dschange.mapper;
 
-import com.ejushang.spring.dschange.bean.Shop;
+import com.amos.spring.dschange.bean.Shop;
 
 import java.util.List;
 
