@@ -20,7 +20,7 @@ import java.lang.reflect.Method;
  * @since v1.0
  */
 @Aspect
-public  class ChooseDataSourceAspect {
+public abstract   class ChooseDataSourceAspect {
 
     protected static final ThreadLocal<String> preDatasourceHolder = new ThreadLocal<String>();
 

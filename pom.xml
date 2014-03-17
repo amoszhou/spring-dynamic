@@ -16,19 +16,17 @@
     </properties>
 
     <build>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-            <resource>
-                <directory>src/main/java</directory>
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+            </testResource>
+            <testResource>
+                <directory>src/test/java</directory>
                 <includes>
                     <include>**/*.xml</include>
                 </includes>
-                <filtering>false</filtering>
-            </resource>
-        </resources>
+            </testResource>
+        </testResources>
 
 
        <plugins>

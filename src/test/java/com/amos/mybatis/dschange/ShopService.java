@@ -1,4 +1,4 @@
-package com.amos.mybatis;
+package com.amos.mybatis.dschange;
 
 import com.amos.mybatis.dschange.bean.Shop;
 import com.amos.mybatis.dschange.mapper.ShopMapper;

@@ -1,6 +1,5 @@
 package com.amos.mybatis.dschange;
 
-import com.amos.mybatis.ShopService;
 import com.amos.mybatis.annotation.ChooseDataSource;
 import com.amos.mybatis.dschange.bean.Shop;
 import org.junit.Test;
