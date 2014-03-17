@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+
+
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+
+
+    <!-- 启动扫描 -->
+    <context:component-scan base-package="com.amos.mybatis">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+    </context:component-scan>
+
+    <!-- 启用CGliB -->
+    <aop:aspectj-autoproxy proxy-target-class="true" />
+
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:jdbc.properties</value>
+            </list>
+        </property>
+    </bean>
+
+
+    <bean name="dataSource_a" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="${jdbc.driverClassName}"/>
+        <property name="jdbcUrl" value="${jdbc.url.spider}"/>
+        <property name="user" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+
+        <!-- http://www.mchange.com/projects/c3p0/index.html -->
+        <property name="maxPoolSize" value="50"/>
+        <property name="minPoolSize" value="5"/>
+        <property name="initialPoolSize" value="8"/>
+        <property name="acquireIncrement" value="5"/>
+        <property name="maxIdleTime" value="300"/>
+        <property name="idleConnectionTestPeriod" value="300"/>
+        <property name="maxStatements" value="200"/>
+        <property name="checkoutTimeout" value="30000"/>
+
+        <property name="breakAfterAcquireFailure" value="true"/>
+        <property name="testConnectionOnCheckin" value="true"/>
+        <property name="preferredTestQuery" value="select 1"/>
+    </bean>
+
+    <bean name="dataSource_b" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="${jdbc_tb.driverClassName}"/>
+        <property name="jdbcUrl" value="${jdbc_tb.url.spider}"/>
+        <property name="user" value="${jdbc_tb.username}"/>
+        <property name="password" value="${jdbc_tb.password}"/>
+
+        <!-- http://www.mchange.com/projects/c3p0/index.html -->
+        <property name="maxPoolSize" value="50"/>
+        <property name="minPoolSize" value="5"/>
+        <property name="initialPoolSize" value="8"/>
+        <property name="acquireIncrement" value="5"/>
+        <property name="maxIdleTime" value="300"/>
+        <property name="idleConnectionTestPeriod" value="300"/>
+        <property name="maxStatements" value="200"/>
+        <property name="checkoutTimeout" value="30000"/>
+
+        <property name="breakAfterAcquireFailure" value="true"/>
+        <property name="testConnectionOnCheckin" value="true"/>
+        <property name="preferredTestQuery" value="select 1"/>
+    </bean>
+
+    <bean name="dynamicDatasource" class="com.amos.mybatis.datasource.CustomerDatasource">
+        <property name="targetDataSources">
+            <map>
+                <entry key="ds_1" value-ref="dataSource_a"/>
+                <entry key="ds_2" value-ref="dataSource_b"/>
+            </map>
+        </property>
+        <property name="defaultTargetDataSource" ref="dataSource_a"    />
+    </bean>
+
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dynamicDatasource"/>
+        <property name="configLocation" value="classpath:mybatis.xml" />
+        <property name="mapperLocations">
+            <list>
+                <value>classpath*:com/amos/mybatis/dschange/mapper/shop-mapper.xml</value>
+            </list>
+         </property>
+    </bean>
+
+    <bean name="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg ref="sqlSessionFactory" />
+    </bean>
+
+    <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.amos.mybatis.dschange.mapper" />
+        <property name="sqlSessionTemplateBeanName" value="sqlSessionTemplate"/>
+    </bean>
+
+</beans>
